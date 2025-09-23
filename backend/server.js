@@ -2,7 +2,14 @@ const express = require('express');
 const app = express();
 const dotenv = require('dotenv')
 const connectDb = require('./config/Db.config')
+
 dotenv.config()
+
+app.use(express.json())
+
+const authRoute = require('./routes/Auth.routes')
+
+app.use("/api/auth",authRoute)
 
 app.use("/",(req,res,next)=>{
   res.send("Api is running...")
