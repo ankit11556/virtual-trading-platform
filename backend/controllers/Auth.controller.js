@@ -1,4 +1,6 @@
-const User = require('../models/User.model')
+const User = require('../models/User.model');
+const generateToken = require('../utils/GenerateToken.utils');
+const setCookie = require('../utils/SetCookie.utils');
 
 //user register controller
 exports.registerController = async (req,res) => {
@@ -39,6 +41,9 @@ exports.loginController = async (req,res) => {
     if (!isPasswordMatch) {
       return res.status(403).json({message: "Invalid credentials"})
     }
+ 
+    const token = generateToken(user._id)
+    setCookie(res,token)
 
      res.status(201).json({message: "Login successful",
        user: {
