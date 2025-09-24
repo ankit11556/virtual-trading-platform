@@ -7,6 +7,7 @@ import TradePage from "../pages/TradePage";
 import TradeHistoryPage from "../pages/TradeHistoryPage";
 import PortfolioPage from "../pages/PortfolioPage";
 import AnalyticsPage from "../pages/AnalyticsPage";
+import PrivateRoute from "../components/PrivateRoutes";
 
 const AppRoutes = () =>{
   return(
@@ -14,12 +15,14 @@ const AppRoutes = () =>{
       <Route path="/login" element={<LoginPage/>}></Route>
       <Route path="/register" element={<RegisterPage/>}></Route>
 
+    <Route element={<PrivateRoute/>}>
       <Route path="/" element={<Dashboard/>}></Route>
       <Route path="/market" element={<MarketPage/>}></Route>
       <Route path="/trade" element={<TradePage/>}></Route>
       <Route path="/history" element={<TradeHistoryPage/>}></Route>
       <Route path="/portfolio" element={<PortfolioPage/>}></Route>
       <Route path="/analytics" element={<AnalyticsPage/>}></Route>
+    </Route>
     </Routes>
   )
 }
