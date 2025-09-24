@@ -9,8 +9,10 @@ app.use(express.json())
 app.use(cookieParser())
 
 const authRoute = require('./routes/Auth.routes')
+const walletRoute = require('./routes/Wallet.routes')
 
 app.use("/api/auth",authRoute)
+app.use("/api/wallet",walletRoute)
 
 app.use("/",(req,res,next)=>{
   res.send("Api is running...")
