@@ -11,3 +11,15 @@ export const registerApi = async (data) => {
     {withCredentials: true}
   )
 }
+
+export const checkAuthApi = async () => {
+  return axios.get(`${API_URL}/auth/check-auth`,
+    {withCredentials: true}
+  )
+}
+
+export const logoutApi = async () => {
+  return axios.post(`${API_URL}/auth/logout`,{},
+    {withCredentials: true}
+  )
+}

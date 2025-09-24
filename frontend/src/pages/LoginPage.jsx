@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { loginApi } from "../services/AuthApi";
+import { useAuth } from "../contexts/AuthContext";
 
 const LoginPage = () => {
   const navigate = useNavigate();
 
+  const {setIsAutheticated,setUser} = useAuth();   
 
   const [formData, setFormData] = useState({
     email: "",
@@ -20,6 +22,8 @@ const LoginPage = () => {
     try {
       const res = await loginApi(formData);
       alert(res.data.message)
+       setIsAutheticated(true)
+       setUser(res.data.user)
       navigate("/") 
     } catch (error) {
       alert(error.response?.data?.message)

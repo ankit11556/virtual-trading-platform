@@ -1,9 +1,12 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Menu, X } from "lucide-react"; // hamburger icons
+import { useAuth } from "../contexts/AuthContext";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+
+  const {user,logout} = useAuth() 
 
   const navLinks = [
     { name: "Dashboard", path: "/" },
@@ -34,11 +37,20 @@ const Navbar = () => {
                 {link.name}
               </Link>
             ))}
+        {user?(
+           <button
+              onClick={logout}
+             className="bg-red-500  text-white px-3 py-1 rounded-lg shadow-md hover:scale-105 hover:brightness-110 transition-all duration-300"
+               >
+               Logout
+             </button>
+        ):(
         <button
           className="bg-white text-indigo-500 hover:cursor-pointer hover:text-indigo-600 px-3 py-1 rounded transition-colors"
         >
          <Link to="/login">Login</Link> 
         </button>
+        )}
           </div>
 
           {/* Mobile Hamburger */}
@@ -63,11 +75,20 @@ const Navbar = () => {
               {link.name}
             </Link>
           ))}
+           {user?(
            <button
+              onClick={logout}
+             className="bg-red-500  text-white px-4 py-2 rounded-lg shadow-md hover:scale-105 hover:brightness-110 transition-all duration-300"
+               >
+               Logout
+             </button>
+        ):(
+        <button
           className="bg-white text-indigo-500 hover:cursor-pointer hover:text-indigo-600 px-3 py-1 rounded transition-colors"
         >
          <Link to="/login">Login</Link> 
         </button>
+        )}
         </div>
       )}
     </nav>
