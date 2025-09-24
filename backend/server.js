@@ -12,12 +12,13 @@ const authRoute = require('./routes/Auth.routes')
 const walletRoute = require('./routes/Wallet.routes')
 const marketDataRoute = require('./routes/MarketData.routes')
 const tradeRoute = require('./routes/Trade.routes')
+const portfolioRoute = require('./routes/Portfolio.routes')
 
 app.use("/api/auth",authRoute)
 app.use("/api/wallet",walletRoute)
 app.use("/api/market",marketDataRoute)
 app.use("/api/trade",tradeRoute)
-
+app.use("/api/portfolio",portfolioRoute)
 app.use("/",(req,res,next)=>{
   res.send("Api is running...")
 })
