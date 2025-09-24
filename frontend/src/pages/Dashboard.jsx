@@ -23,7 +23,8 @@ function Dashboard() {
   const fetchTrades = async () => {
     try {
       const res = await getTradeHistoryApi()
-      setTrades(res.data.trades.reverse().slice(0, 5)); // last 5 trades
+      const tradesArray = res.data.trades || res.data || []; 
+      setTrades(tradesArray.reverse().slice(0, 5)); // last 5 trades
     } catch (err) {
       console.error(err);
     }
