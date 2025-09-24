@@ -33,3 +33,14 @@ exports.createtrade = async (req,res) => {
    res.status(500).json({ message: err.message }); 
   }
 }
+
+exports.getTradeHistory = async (req,res) => {
+  try {
+    const userId = req.user._id;
+
+    const trades = await Trade.find({userId}).sort({createAt: -1});
+    res.json(trades)
+  } catch (error) {
+    res.status(500).json({ message: err.message });
+  }
+}
