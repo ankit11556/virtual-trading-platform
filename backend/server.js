@@ -10,9 +10,11 @@ app.use(cookieParser())
 
 const authRoute = require('./routes/Auth.routes')
 const walletRoute = require('./routes/Wallet.routes')
+const marketDataRoute = require('./routes/MarketData.routes')
 
 app.use("/api/auth",authRoute)
 app.use("/api/wallet",walletRoute)
+app.use("/api/market",marketDataRoute)
 
 app.use("/",(req,res,next)=>{
   res.send("Api is running...")
