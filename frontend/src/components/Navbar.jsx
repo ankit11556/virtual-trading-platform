@@ -35,6 +35,11 @@ const Navbar = () => {
                 {link.name}
               </Link>
             ))}
+             <button
+          className="bg-white text-indigo-500 hover:cursor-pointer hover:text-indigo-600 px-3 py-1 rounded transition-colors"
+        >
+         <Link to="/login">Login</Link> 
+        </button>
           </div>
 
           {/* Mobile Hamburger */}
