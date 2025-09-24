@@ -6,6 +6,7 @@ import MarketPage from "../pages/MarketPage";
 import TradePage from "../pages/TradePage";
 import TradeHistoryPage from "../pages/TradeHistoryPage";
 import PortfolioPage from "../pages/PortfolioPage";
+import AnalyticsPage from "../pages/AnalyticsPage";
 
 const AppRoutes = () =>{
   return(
@@ -18,6 +19,7 @@ const AppRoutes = () =>{
       <Route path="/trade" element={<TradePage/>}></Route>
       <Route path="/history" element={<TradeHistoryPage/>}></Route>
       <Route path="/portfolio" element={<PortfolioPage/>}></Route>
+      <Route path="/analytics" element={<AnalyticsPage/>}></Route>
     </Routes>
   )
 }

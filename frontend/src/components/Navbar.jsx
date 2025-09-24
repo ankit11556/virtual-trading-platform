@@ -11,8 +11,7 @@ const Navbar = () => {
     { name: "Trade", path: "/trade" },
     { name: "Portfolio", path: "/portfolio" },
     { name: "History", path: "/history" },
-    { name: "Analytics", path: "/analytics" },
-    { name: "Profile", path: "/profile" },
+    { name: "Analytics", path: "/analytics" }
   ];
 
   return (
@@ -35,7 +34,7 @@ const Navbar = () => {
                 {link.name}
               </Link>
             ))}
-             <button
+        <button
           className="bg-white text-indigo-500 hover:cursor-pointer hover:text-indigo-600 px-3 py-1 rounded transition-colors"
         >
          <Link to="/login">Login</Link> 
@@ -53,7 +52,7 @@ const Navbar = () => {
 
       {/* Mobile Sidebar */}
       {isOpen && (
-        <div className="md:hidden bg-gray-900 text-white px-6 py-4 space-y-4">
+        <div className="md:hidden bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-600  text-white px-6 py-4 space-y-4">
           {navLinks.map((link) => (
             <Link
               key={link.name}
@@ -64,6 +63,11 @@ const Navbar = () => {
               {link.name}
             </Link>
           ))}
+           <button
+          className="bg-white text-indigo-500 hover:cursor-pointer hover:text-indigo-600 px-3 py-1 rounded transition-colors"
+        >
+         <Link to="/login">Login</Link> 
+        </button>
         </div>
       )}
     </nav>
