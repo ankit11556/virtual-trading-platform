@@ -1,5 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { addTradeApi } from "../services/TradesApi";
+import { useNavigate } from "react-router-dom";
 
 function TradePage() {
   const [symbol, setSymbol] = useState("BTCUSDT");
@@ -9,6 +10,8 @@ function TradePage() {
   const [message, setMessage] = useState("");
 
   const symbolsList = ["BTCUSDT", "ETHUSDT", "BNBUSDT", "XRPUSDT", "ADAUSDT"];
+
+  const navigate = useNavigate()
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -21,6 +24,7 @@ function TradePage() {
       );
       setMessage(res.data.message);
       setQuantity("");
+      navigate("/")
     } catch (err) {
       setMessage(err.response?.data?.message || "Something went wrong");
       console.error(err);

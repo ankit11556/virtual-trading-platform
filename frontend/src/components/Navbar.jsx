@@ -2,9 +2,11 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Menu, X } from "lucide-react"; // hamburger icons
 import { useAuth } from "../contexts/AuthContext";
+import { FaUserCircle } from "react-icons/fa";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [profileIsOpen,setProfileIsOpen] = useState(false)
 
   const {user,logout} = useAuth() 
 
@@ -37,21 +39,36 @@ const Navbar = () => {
                 {link.name}
               </Link>
             ))}
-        {user?(
-           <button
-              onClick={logout}
-             className="bg-red-500  text-white px-3 py-1 rounded-lg shadow-md hover:scale-105 hover:brightness-110 transition-all duration-300"
-               >
-               Logout
-             </button>
-        ):(
-        <button
-          className="bg-white text-indigo-500 hover:cursor-pointer hover:text-indigo-600 px-3 py-1 rounded transition-colors"
-        >
-         <Link to="/login">Login</Link> 
+        {user ? (
+        <div className="relative">
+
+          {/* Profile Button */}
+          <button
+            onClick={() => setProfileIsOpen(!profileIsOpen)}
+            className="flex items-center gap-2 px-3 py-1 bg-white text-indigo-600 rounded-lg shadow-md hover:bg-gray-100 transition"
+          >
+            <FaUserCircle className="text-2xl" />
+            <span>{user.name}</span>
+          </button>
+
+          {/* Dropdown */}
+          {profileIsOpen && (
+            <div className="absolute right-0 mt-2 ">
+              <button
+                onClick={logout}
+                className="w-full text-left px-4 py-2 rounded-lg bg-red-500 hover:bg-red-600"
+              >
+                Logout
+              </button>
+            </div>
+          )}
+        </div>
+      ) : (
+        <button className="bg-white text-indigo-500 hover:text-indigo-600 px-3 py-1 rounded transition-colors">
+          <Link to="/login">Login</Link>
         </button>
-        )}
-          </div>
+      )}
+      </div>
 
           {/* Mobile Hamburger */}
           <div className="md:hidden">
@@ -64,7 +81,7 @@ const Navbar = () => {
 
       {/* Mobile Sidebar */}
       {isOpen && (
-        <div className="md:hidden bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-600  text-white px-6 py-4 space-y-4">
+        <div className="md:hidden bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-600  text-white px-6 py-4 space-y-4 ">
           {navLinks.map((link) => (
             <Link
               key={link.name}
@@ -75,20 +92,35 @@ const Navbar = () => {
               {link.name}
             </Link>
           ))}
-           {user?(
-           <button
-              onClick={logout}
-             className="bg-red-500  text-white px-4 py-2 rounded-lg shadow-md hover:scale-105 hover:brightness-110 transition-all duration-300"
-               >
-               Logout
-             </button>
-        ):(
-        <button
-          className="bg-white text-indigo-500 hover:cursor-pointer hover:text-indigo-600 px-3 py-1 rounded transition-colors"
-        >
-         <Link to="/login">Login</Link> 
+            {user ? (
+        <div className="relative">
+
+          {/* Profile Button */}
+          <button
+            onClick={() => setProfileIsOpen(!profileIsOpen)}
+            className="flex items-center gap-2 px-3 py-1 bg-white text-indigo-600 rounded-lg shadow-md hover:bg-gray-100 transition"
+          >
+            <FaUserCircle className="text-2xl" />
+            <span>{user.name}</span>
+          </button>
+
+          {/* Dropdown */}
+          {profileIsOpen && (
+            <div className="absolute left-0 mt-2 mb-2 ">
+              <button
+                onClick={logout}
+                className="w-full text-left px-4 py-1  rounded-lg bg-red-500 hover:bg-red-600"
+              >
+                Logout
+              </button>
+            </div>
+          )}
+        </div>
+      ) : (
+        <button className="bg-white text-indigo-500 hover:text-indigo-600 px-3 py-1 rounded transition-colors">
+          <Link to="/login">Login</Link>
         </button>
-        )}
+      )}
         </div>
       )}
     </nav>
